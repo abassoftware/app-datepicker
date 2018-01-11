@@ -66,6 +66,7 @@
           notify: true,
           readOnly: true
         },
+        selecteddate: Date,
         invalidDate: {
           type: Boolean,
           notify: true,
@@ -112,7 +113,13 @@
         '_updateReadOnlyDate(_readOnlyDate)',
         '_updateReadOnlyInvalidDate(_readOnlyInvalidDate)',
         '_updateDatepickerView(view)',
+        '_resetToGivenDate(selecteddate)'
       ],
+
+      _resetToGivenDate: function(selecteddate){
+        this.$.datePicker.resetDateToGiven(selecteddate);
+      },
+
       _renderOpened: function() {
         if (this.withBackdrop) {
           this.backdropElement.open();

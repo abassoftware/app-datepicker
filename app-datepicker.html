@@ -1491,6 +1491,7 @@ Custom property | Description | Default
               var _sd = this._selectedDate;
               var _f = this._format
               var _confirmDate = this._bindSelectedFulldate(_sy, _sm, _sd, _f);
+              this._setDate(""); //This one allows to fire event even if the same date selected twice(disatvantage: it forces the event to fire 2 times, where the first event is empty string)
               this._setDate(_confirmDate);
               this.set('_isSelectedDateConfirmed', !1);
 
@@ -1668,6 +1669,16 @@ Custom property | Description | Default
         this.set('_selectedYear', nowFy);
         this.set('_selectedMonth', nowM);
         this.set('_selectedDate', nowD);
+        this._setInvalidDate(false);
+      },
+
+      //reset selected date to givenDate
+      resetDateToGiven: function (givenDate) {
+        this.set('_activeYear', givenDate.getFullYear());
+        this.set('_activeMonth',  givenDate.getMonth());
+        this.set('_selectedYear', givenDate.getFullYear());
+        this.set('_selectedMonth', givenDate.getMonth());
+        this.set('_selectedDate', givenDate.getDate());
         this._setInvalidDate(false);
       },
 
